@@ -101,6 +101,13 @@ public class Rover {
 		this.instructions = new ArrayList<Instruction>();
 	}
 	
+	public Rover(Plateau plateau, Position position, Direction direction, Instruction...instructions) {
+		this.plateau = plateau;
+		this.position = position;
+		this.direction = direction;
+		this.instructions = Arrays.asList(instructions);
+	}
+	
 	/**
 	 * Define a posicao da sonda no planalto
 	 * @param position
@@ -169,6 +176,11 @@ public class Rover {
 	 */
 	public void setInstructions(Instruction... instructions) {
 		this.instructions = Arrays.asList(instructions);
+	}
+	
+	@Override
+	public String toString() {
+		return this.position.getX() + " " + this.position.getY() + " " + this.direction;
 	}
 	
 }

@@ -24,8 +24,8 @@ public class MissionServiceImpl implements MissionService {
 	/* (non-Javadoc)
 	 * @see org.myhouseonmars.mars.explorer.service.MissionService#executeMission(org.myhouseonmars.mars.explorer.domain.Mission)
 	 */
-	public List<Position> executeMission(Mission mission) {
-		List<Position> finalPositions = new ArrayList<Position>();
+	public List<String> executeMission(Mission mission) {
+		List<String> finalPositions = new ArrayList<String>();
 		
 		Plateau plateau = mission.getPlateau();
 		List<Rover> rovers = mission.getRovers();
@@ -45,7 +45,7 @@ public class MissionServiceImpl implements MissionService {
 		 */
 		for (Rover rover : rovers) {
 			rover.executeInstructions();
-			finalPositions.add(rover.getPosition());
+			finalPositions.add(rover.toString());
 		}
 		
 		return finalPositions;
