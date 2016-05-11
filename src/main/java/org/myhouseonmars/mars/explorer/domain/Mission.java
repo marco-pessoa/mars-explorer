@@ -16,7 +16,7 @@ public class Mission {
 	
 	private Plateau plateau;
 	private List<Rover> rovers;
-	private Map<Rover, List<Command>> mapRoverCommands;
+	private Map<Rover, List<Instruction>> mapRoverCommands;
 	
 	public Mission() {
 	}
@@ -54,11 +54,11 @@ public class Mission {
 		this.rovers = rovers;
 	}
 
-	public Map<Rover, List<Command>> getMapRoverCommands() {
+	public Map<Rover, List<Instruction>> getMapRoverCommands() {
 		return mapRoverCommands;
 	}
 
-	public void setMapRoverCommands(Map<Rover, List<Command>> mapRoverCommands) {
+	public void setMapRoverCommands(Map<Rover, List<Instruction>> mapRoverCommands) {
 		this.mapRoverCommands = mapRoverCommands;
 	}
 	

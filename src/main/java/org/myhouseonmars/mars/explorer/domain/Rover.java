@@ -3,10 +3,15 @@
  */
 package org.myhouseonmars.mars.explorer.domain;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Sonda veicular designada para a exploracao de um planalto ({@link Plateau}). A sonda
  * e capaz de guardar sua posicao corrente e se movimentar seguindo uma sequencia
- * de instrucoes do tipo {@link Command}. 
+ * de instrucoes do tipo {@link Instruction}. 
  * 
  * @author Marco Pessoa
  *
@@ -16,22 +21,25 @@ public class Rover {
 	private Position position;
 	private Plateau plateau;
 	private Direction direction;
+	private List<Instruction> instructions;
 	
 	
 	/**
-	 * Movimenta a sonda de acordo com um ou mais comandos fornecidos. 
+	 * Movimenta a sonda de acordo com a lista de instrucoes fornecida. 
 	 * 
-	 * @param commands Um ou mais comandos para a movimentacao da sonda
 	 */
-	public void move(Command... commands) {
+	public void executeInstructions() {
 		if (this.plateau == null || this.plateau.getWidth() < 1 || this.plateau.getLength() < 1)
 			throw new UnsupportedOperationException("No Plateau or Plateau dimensions defined");
 		
-		for (Command command : commands) {
-			if (command.equals(Command.M)) {
+		if (this.instructions == null)
+			throw new NullPointerException("Instructions list cannot be null");
+		
+		for (Instruction instruction : this.instructions) {
+			if (instruction.equals(Instruction.M)) {
 				moveForward();
 			} else {
-				turnTo(command);
+				turnTo(instruction);
 			}
 		}
 	}
@@ -54,7 +62,7 @@ public class Rover {
 		}
 	}
 
-	private void turnTo(Command command) {
+	private void turnTo(Instruction command) {
 		if (isTurnToL(command)) { //Gira a esquerda
 			if (this.direction.equals(Direction.E)) {
 				this.direction = Direction.N;
@@ -78,18 +86,19 @@ public class Rover {
 		}
 	}
 
-	private boolean isTurnToR(Command command) {
-		return Command.R.equals(command);
+	private boolean isTurnToR(Instruction command) {
+		return Instruction.R.equals(command);
 	}
 
-	private boolean isTurnToL(Command command) {
-		return Command.L.equals(command);
+	private boolean isTurnToL(Instruction command) {
+		return Instruction.L.equals(command);
 	}
 
 	public Rover() {
 		this.plateau = new Plateau(0,0);
 		this.position = new Position(0,0);
 		this.direction = Direction.N;
+		this.instructions = new ArrayList<Instruction>();
 	}
 	
 	/**
@@ -112,7 +121,7 @@ public class Rover {
 	 * Estabelece o Planalto a ser explorado por esta sonda.
 	 * @param plateu
 	 */
-	public void setPlateu(Plateau plateu) {
+	public void setPlateau(Plateau plateu) {
 		this.plateau = plateu;
 	}
 	
@@ -120,7 +129,7 @@ public class Rover {
 	 * 
 	 * @return Planalto onde se encontra esta sonda.
 	 */
-	public Plateau getPlateu() {
+	public Plateau getPlateau() {
 		return plateau;
 	}
 	
@@ -138,6 +147,28 @@ public class Rover {
 	 */
 	public Direction getDirection() {
 		return direction;
+	}
+
+	/**
+	 * @return Lista de insrucoes que a sonda deve executar.
+	 */
+	public List<Instruction> getInstructions() {
+		return instructions;
+	}
+
+	/**
+	 * @param Uma lista de instrucoes para a sonda executar.
+	 */
+	public void setInstructions(List<Instruction> instructions) {
+		this.instructions = instructions;
+	}
+	
+	/**
+	 * 
+	 * @param Uma ou mais instrucoes para a sonda executar.
+	 */
+	public void setInstructions(Instruction... instructions) {
+		this.instructions = Arrays.asList(instructions);
 	}
 	
 }

@@ -6,7 +6,7 @@ package org.myhouseonmars.mars.explorer.test;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org.myhouseonmars.mars.explorer.domain.Command;
+import org.myhouseonmars.mars.explorer.domain.Instruction;
 import org.myhouseonmars.mars.explorer.domain.Direction;
 import org.myhouseonmars.mars.explorer.domain.Plateau;
 import org.myhouseonmars.mars.explorer.domain.Position;
@@ -19,16 +19,17 @@ import org.myhouseonmars.mars.explorer.domain.Rover;
 public class RoverTest {
 
 	/**
-	 * Test method for {@link org.myhouseonmars.mars.explorer.domain.Rover#move(org.myhouseonmars.mars.explorer.domain.Command[])}.
+	 * Test method for {@link org.myhouseonmars.mars.explorer.domain.Rover#move(org.myhouseonmars.mars.explorer.domain.Instruction[])}.
 	 */
 	@Test
 	public void testMove() {
 		Rover rover = new Rover();
-		rover.setPlateu(new Plateau(5, 5));
+		rover.setPlateau(new Plateau(5, 5));
 		rover.setPosition(new Position(1, 2));
 		rover.setDirection(Direction.N);
 		
-		rover.move(Command.L, Command.M, Command.L, Command.M, Command.L, Command.M, Command.L, Command.M, Command.M);
+		rover.setInstructions(Instruction.L, Instruction.M, Instruction.L, Instruction.M, Instruction.L, Instruction.M, Instruction.L, Instruction.M, Instruction.M);
+		rover.executeInstructions();
 		
 		System.out.println(rover.getPosition() + " " + rover.getDirection());
 		

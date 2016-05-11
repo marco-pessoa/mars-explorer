@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.myhouseonmars.mars.explorer.domain.Command;
+import org.myhouseonmars.mars.explorer.domain.Instruction;
 import org.myhouseonmars.mars.explorer.domain.Mission;
 import org.myhouseonmars.mars.explorer.domain.Plateau;
 import org.myhouseonmars.mars.explorer.domain.Position;
@@ -29,7 +29,6 @@ public class MissionServiceImpl implements MissionService {
 		
 		Plateau plateau = mission.getPlateau();
 		List<Rover> rovers = mission.getRovers();
-		Map<Rover, List<Command>> mapRoverCommands = mission.getMapRoverCommands();
 		
 		//Validacoes
 		if (plateau == null)
@@ -38,8 +37,6 @@ public class MissionServiceImpl implements MissionService {
 		if (rovers == null || rovers.size() == 0)
 			throw new InvalidParameterException("Mission must have one ore more rovers to get started");
 		
-		if (mapRoverCommands == null || mapRoverCommands.isEmpty())
-			throw new InvalidParameterException("Mission must define at least one command to be accomplished");
 		
 		/**
 		 * Cada sonda sera controlada sequencialmente, i.e., a segunda
@@ -47,8 +44,7 @@ public class MissionServiceImpl implements MissionService {
 		 * e assim por diante.
 		 */
 		for (Rover rover : rovers) {
-			List<Command> commands = mapRoverCommands.get(rover);
-			rover.move(commands.toArray(new Command[commands.size()]));
+			rover.executeInstructions();
 			finalPositions.add(rover.getPosition());
 		}
 		
