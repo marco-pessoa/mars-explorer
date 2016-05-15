@@ -3,7 +3,7 @@
  */
 package org.myhouseonmars.mars.explorer.test;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,6 +73,25 @@ public class MissionServiceImplTest {
 		List<String> lstMission = Arrays.asList("1 3 N", "5 1 E");
 		
 		assertArrayEquals(lstMission.toArray(), lstOutput.toArray());
+	}
+	
+	@Test
+	public void testCreateMission() {
+		List<String> instructions = new ArrayList<>();
+		instructions.add("5 5");
+		instructions.add("1 2 N");
+		instructions.add("LMLMLMLMM");
+		instructions.add("3 3 E ");
+		instructions.add("MMRMMRMRRM");
+		
+		Mission mission = service.createMission(instructions);
+		
+		assertNotNull(mission);
+		assertTrue(mission.getPlateau().getWidth() == 5 && mission.getPlateau().getLength() == 5);
+		assertTrue(mission.getRovers().size() == 2);
+		assertTrue(mission.getRovers().get(0).getPosition().getX() == 1 && mission.getRovers().get(0).getPosition().getY() == 2 && Direction.N.equals(mission.getRovers().get(0).getDirection()));
+		assertTrue(mission.getRovers().get(1).getInstructions().size() == 10);
+		System.out.println(mission.getRovers().get(1).getInstructions());
 	}
 
 }
