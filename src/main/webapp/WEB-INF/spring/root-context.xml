@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 
+		Infelizmente a biblioteca de integracao do Jersey nao reconhece as
+		anotacoes de beans do Spring como @Component e @Service, sendo
+		necessario declarar todos os beans que devem ser injetados nas 
+		classes que compoem um servico JAX-RS: 
+	 -->
+	<bean id="missionService" class="org.myhouseonmars.mars.explorer.service.impl.MissionServiceImpl" />
+		
+</beans>

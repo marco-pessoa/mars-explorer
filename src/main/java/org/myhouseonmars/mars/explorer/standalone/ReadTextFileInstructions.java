@@ -4,12 +4,9 @@
 package org.myhouseonmars.mars.explorer.standalone;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.LinkOption;
 import java.nio.file.NoSuchFileException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +25,11 @@ import org.myhouseonmars.mars.explorer.service.impl.MissionServiceImpl;
 public class ReadTextFileInstructions {
 
 	/**
-	 * @param args
+	 * @param args Caminho do arquivo texto com as instrucoes da missao.
 	 */
 	public static void main(String[] args) {
 		if (args.length < 1) {
-			System.out.println("ERRO: Informe o caminho completo de um arquivo texto válido");
+			System.out.println("ERRO: Informe o caminho completo de um arquivo texto valido");
 			return;
 		}
 

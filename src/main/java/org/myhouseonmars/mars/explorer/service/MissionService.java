@@ -28,19 +28,19 @@ public interface MissionService {
 	/**
 	 * Cria uma missao ({@link Mission}) a partir de uma lista de instrucoes. As
 	 * instrucoes devem seguir essa ordem: <br><br>
-	 * A primeira linha da entrada de dados é a coordenada do ponto
+	 * A primeira linha da entrada de dados e a coordenada do ponto
 	 * superior-direito da malha do planalto. Lembrando que a inferior esquerda
-	 * sempre será (0,0). <br>
+	 * sempre sera (0,0). <br>
 	 * <br>
-	 * O resto da entrada será informação das sondas que foram implantadas. Cada
-	 * sonda é representada por duas linhas. A primeira indica sua posição
-	 * inicial e a segunda uma série de instruções indicando para a sonda como
-	 * ela deverá explorar o planalto. <br>
+	 * O resto da entrada sera informacao das sondas que foram implantadas. Cada
+	 * sonda e representada por duas linhas. A primeira indica sua posicao
+	 * inicial e a segunda uma serie de instrucoes indicando para a sonda como
+	 * ela devera explorar o planalto. <br>
 	 * <br>
-	 * A posição é representada por dois inteiros e uma letra separados por
-	 * espaços, correpondendo à coordenada X-Y e à direção da sonda. Cada sonda
-	 * será controlada sequencialmente, o que quer dizer que a segunda sonda só
-	 * irá se movimentar após que a primeira tenha terminado suas instruções.
+	 * A posicao e representada por dois inteiros e uma letra separados por
+	 * espacos, correpondendo e coordenada X-Y e a direcao da sonda. Cada sonda
+	 * sera controlada sequencialmente, o que quer dizer que a segunda sonda so
+	 * ira se movimentar apos que a primeira tenha terminado suas instrucoes.
 	 * 
 	 * @param strInstructions
 	 * @return

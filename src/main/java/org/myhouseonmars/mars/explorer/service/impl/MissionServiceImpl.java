@@ -16,11 +16,13 @@ import org.myhouseonmars.mars.explorer.domain.Plateau;
 import org.myhouseonmars.mars.explorer.domain.Position;
 import org.myhouseonmars.mars.explorer.domain.Rover;
 import org.myhouseonmars.mars.explorer.service.MissionService;
+import org.springframework.stereotype.Service;
 
 /**
  * @author Marco Pessoa
  *
  */
+@Service
 public class MissionServiceImpl implements MissionService {
 
 	/*
